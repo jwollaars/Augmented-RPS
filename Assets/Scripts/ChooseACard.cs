@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-namespace AugmentedRPS
+namespace SeriousGame
 {
     public class ChooseACard : MonoBehaviour
     {
         [SerializeField]
-        private GameObject[] m_Cards = new GameObject[3];
+        private GameObject[] m_CardsPlace = new GameObject[3];
+
         [SerializeField]
         private GameObject[] m_CardsPreview = new GameObject[3];
 
@@ -51,7 +52,7 @@ namespace AugmentedRPS
 
         public void PlaceCard()
         {
-            GameObject card = (GameObject)Instantiate(m_Cards[m_CurrentCard], new Vector3(0f, 0.5f, 0f), Quaternion.identity);
+            GameObject card = Instantiate(m_CardsPlace[m_CurrentCard], new Vector3(0f, 0.5f, 0f), Quaternion.identity);
         }
     }
 }
