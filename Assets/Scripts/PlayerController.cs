@@ -5,20 +5,25 @@ namespace AugmentedRPS
 {
     public class PlayerController : NetworkBehaviour
     {
-        private GameObject m_Canvas;
+        [SerializeField]
+        private string m_Canvas;
 
         [SerializeField]
         private GameObject m_CanvasChild;
 
-        private void Awake()
-        {
-            m_Canvas = GameObject.Find("Canvas");
-        }
-
         private void Start()
         {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
+
             GameObject GO = Instantiate(m_CanvasChild);
-            GO.transform.SetParent(m_Canvas.transform);
+            GO.transform.SetParent(GameObject.Find(m_Canvas).transform);
+
+            RectTransform rectTransform = GO.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(0f, 0f);
+            rectTransform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }
